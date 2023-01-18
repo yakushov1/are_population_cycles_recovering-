@@ -19,8 +19,6 @@ Com <- c("Bсе сообщество")
 
 # Оценка когерентности вейвлетов временных рядов колебаний численности на обоих берегах
 
-
-
 cross_wavelet <- function(L,R,Spec){
 #подготовка датафрейма
   setwd("A:/numbers_of_mammals/wavelet+cluster+autocorrelation")
@@ -30,7 +28,6 @@ cross_wavelet <- function(L,R,Spec){
   else {
     if (L[1,1] < 1999 & R[1,1] < 1999){
       cat <- "XX"
-     
     }
     else {warning("ошибка! таблицы из разных отловов!")}
   }
@@ -56,17 +53,12 @@ cross_wavelet <- function(L,R,Spec){
                      Period = w$Period,
                      Spec = name)
     
-  png(filename = paste(cat, '/', name,  '.png', sep = ''),
-       width = 1430, height = 870, pointsize = 15, res = 100)
-  wc.image(w, which.image = "wp", plot.coi = T, plot.arrow = F, 
-                  main = "", siglvl.contour = 0.05, show.date = F,
-                  periodlab = '', timelab = '', plot.legend = F, label.time.axis = F,
-           clear.area = F, siglvl.area = 0.05, lwd = 20)
+  png(filename = paste(cat, '/', name,  '.png', sep = ''), width = 1430, height = 870, pointsize = 15, res = 100)
+  wc.image(w, which.image = "wp", plot.coi = T, plot.arrow = F, main = "", siglvl.contour = 0.05, show.date = F,
+                  periodlab = '', timelab = '', plot.legend = F, label.time.axis = F, clear.area = F, siglvl.area = 0.05, lwd = 20)
   dev.off()
-  
   return(w2) 
   }
-  
   for (i in Spec){
     new <-  pl(i)
     df_average <- rbind(df_average, new)
@@ -272,11 +264,7 @@ dominant <- function(L_XX, R_XX,L_XXI, R_XXI){
                                         "S. tundrensis","S. caecutiens",
                                         "S. araneus"))) %>%
     filter(is.na(Spec) == F)
-   		
- 	
- 
-  
-
+   	
   data$Dom[data$Dom == 0] <- NA
   return(data)
 
@@ -317,7 +305,3 @@ pl <- ggplot(b, aes(date,Spec, fill = Dom ))+
         
 ggsave(device = png, filename = 'dominant.png',
        plot = pl, bg ='transparent', width = 2481, height = 1900, units = "px" )
-         
-
-
-
